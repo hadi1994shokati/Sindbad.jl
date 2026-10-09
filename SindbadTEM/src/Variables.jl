@@ -483,6 +483,20 @@ sindbad_tem_variables = orD{Symbol,orD{Symbol,String}}(
         :land_field => "diagnostics",
         :description => "effect of soil moisture on gpp. 1: no stress, 0: complete stress"
     ),
+    :diagnostics__gpp_f_wb_fast => orD(
+        :standard_name => "gpp_f_wb_fast",
+        :long_name => "fast_water_balance_effect_gpp",
+        :units => "fraction",
+        :land_field => "diagnostics",
+        :description => "current water limitation of gpp from the fast water-balance memory (gppSoilW_deficitMemory). 1: no stress, 0: complete stress"
+    ),
+    :diagnostics__gpp_f_wb_legacy => orD(
+        :standard_name => "gpp_f_wb_legacy",
+        :long_name => "legacy_water_balance_effect_gpp",
+        :units => "fraction",
+        :land_field => "diagnostics",
+        :description => "legacy (slow memory) water limitation of gpp (gppSoilW_deficitMemory). 1: no legacy effect"
+    ),
     :diagnostics__gpp_f_vpd => orD(
         :standard_name => "gpp_f_vpd",
         :long_name => "vapor_pressure_deficit_effect_gpp",
@@ -1476,6 +1490,20 @@ sindbad_tem_variables = orD{Symbol,orD{Symbol,String}}(
         :units => "boolean",
         :land_field => "rootWaterEfficiency",
         :description => "a boolean indicating if the root is allowed to exract water from a given layer depending on maximum rooting depth"
+    ),
+    :states__wb_fast => orD(
+        :standard_name => "wb_fast",
+        :long_name => "fast_water_balance_memory",
+        :units => "mm/day",
+        :land_field => "states",
+        :description => "exponentially weighted mean of the daily water balance (rain - PET) with the fast timescale (gppSoilW_deficitMemory)"
+    ),
+    :states__wb_slow => orD(
+        :standard_name => "wb_slow",
+        :long_name => "slow_water_balance_memory",
+        :units => "mm/day",
+        :land_field => "states",
+        :description => "exponentially weighted mean of the daily water balance (rain - PET) with the slow (legacy) timescale (gppSoilW_deficitMemory)"
     ),
     :states__ambient_CO2 => orD(
         :standard_name => "ambient_CO2",
