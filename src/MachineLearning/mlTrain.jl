@@ -69,7 +69,11 @@ function trainML(hybrid_helpers, ::MixedGradient)
             gradientBatch!(gradient_options.method, grads_batch, gradient_options.options, loss_functions, scaled_params_batch, sites_batch; showprog=false)
 
             gradsNaNCheck!(grads_batch, scaled_params_batch, sites_batch, parameter_table, replace_value=options.replace_value_for_gradient) #? checks for NaNs and if any replace them with replace_value_for_gradient
-            # Jacobian-vector product
+            # Chain rule through the bound scaling: `grads_batch` holds ∂loss/∂θ for the *scaled*
+            # parameters θ = lower + x * (upper - lower), but the pullback expects ∂loss/∂x, where x is
+            # the raw network output in [0, 1]. Hence ∂loss/∂x = (upper - lower) .* ∂loss/∂θ.
+            grads_batch .*= eltype(grads_batch).(parameter_table.upper .- parameter_table.lower)
+            # Vector-Jacobian product through the network
             ∇params = pullback_func(grads_batch)[1]
             opt_state, flat = updateMLModel(update_method, opt_state, flat, ∇params, )
             # opt_state, flat = Optimisers.update(opt_state, flat, ∇params)
