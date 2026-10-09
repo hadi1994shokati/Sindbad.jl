@@ -6,7 +6,7 @@ export gppSoilW_deficitMemory
     τ_slow::T2 = 365.0 | (60.0, 1500.0) | "timescale of the slow water-balance memory that carries the drought legacy" | "day" | ""
     wb_half::T3 = -1.0 | (-5.0, 2.0) | "water balance (rain - PET) at which the water limitation is 50 %" | "mm/day" | ""
     wb_slope::T4 = 2.0 | (0.5, 10.0) | "steepness of the water-limitation response" | "day/mm" | ""
-    legacy_sens::T5 = 0.3 | (0.0, 1.0) | "sensitivity of GPP to the slow (legacy) water deficit; 0 switches the memory off" | "fraction" | ""
+    legacy_sens::T5 = 0.0 | (0.0, 1.0) | "sensitivity of GPP to the slow (legacy) water deficit; the default 0 switches the memory off" | "fraction" | ""
 end
 #! format: on
 
