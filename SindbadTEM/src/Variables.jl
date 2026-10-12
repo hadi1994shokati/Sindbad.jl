@@ -483,6 +483,20 @@ sindbad_tem_variables = orD{Symbol,orD{Symbol,String}}(
         :land_field => "diagnostics",
         :description => "effect of soil moisture on gpp. 1: no stress, 0: complete stress"
     ),
+    :diagnostics__gpp_f_wmem_d => orD(
+        :standard_name => "gpp_f_wmem_d",
+        :long_name => "demand_side_drought_memory_effect_gpp",
+        :units => "fraction",
+        :land_field => "diagnostics",
+        :description => "legacy factor on the GPP soil-water factor from the demand-side drought memory (gppSoilW_Stocker2020Memory). 1: no legacy effect"
+    ),
+    :diagnostics__f_wmem_s => orD(
+        :standard_name => "f_wmem_s",
+        :long_name => "supply_side_drought_memory_effect_transpiration_supply",
+        :units => "fraction",
+        :land_field => "diagnostics",
+        :description => "legacy factor on transpiration supply from the supply-side drought memory (transpirationSupply_wAWCMemory). 1: no legacy effect"
+    ),
     :diagnostics__gpp_f_wb_fast => orD(
         :standard_name => "gpp_f_wb_fast",
         :long_name => "fast_water_balance_effect_gpp",
@@ -1490,6 +1504,20 @@ sindbad_tem_variables = orD{Symbol,orD{Symbol,String}}(
         :units => "boolean",
         :land_field => "rootWaterEfficiency",
         :description => "a boolean indicating if the root is allowed to exract water from a given layer depending on maximum rooting depth"
+    ),
+    :states__wmem_d => orD(
+        :standard_name => "wmem_d",
+        :long_name => "demand_side_drought_memory_state",
+        :units => "fraction",
+        :land_field => "states",
+        :description => "exponentially weighted mean of the daily soil-water stress (1 - normalised soil moisture) with timescale τ_wmem_d (gppSoilW_Stocker2020Memory)"
+    ),
+    :states__wmem_s => orD(
+        :standard_name => "wmem_s",
+        :long_name => "supply_side_drought_memory_state",
+        :units => "fraction",
+        :land_field => "states",
+        :description => "exponentially weighted mean of the daily soil-water stress (1 - normalised soil moisture) with timescale τ_wmem_s (transpirationSupply_wAWCMemory)"
     ),
     :states__wb_fast => orD(
         :standard_name => "wb_fast",
