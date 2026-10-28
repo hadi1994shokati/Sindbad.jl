@@ -483,6 +483,13 @@ sindbad_tem_variables = orD{Symbol,orD{Symbol,String}}(
         :land_field => "diagnostics",
         :description => "effect of soil moisture on gpp. 1: no stress, 0: complete stress"
     ),
+    :diagnostics__gpp_f_latent => orD(
+        :standard_name => "gpp_f_latent",
+        :long_name => "latent_capacity_factor_gpp",
+        :units => "fraction",
+        :land_field => "diagnostics",
+        :description => "per-year latent factor exp(ls_y) on the potential GPP (gppPotential_Monteith_latent). 1: no effect"
+    ),
     :diagnostics__gpp_f_wmem_d => orD(
         :standard_name => "gpp_f_wmem_d",
         :long_name => "demand_side_drought_memory_effect_gpp",
